@@ -14,6 +14,7 @@ import androidx.compose.material3.Divider
 import androidx.compose.material3.DrawerState
 import androidx.compose.material3.DrawerValue
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
@@ -46,6 +47,7 @@ import androidx.navigation.compose.rememberNavController
 import cat.institutmontivi.decissorviewmodel25.navegacio.DestinacioCaraOCreu
 import cat.institutmontivi.decissorviewmodel25.navegacio.DestinacioInstruccions
 import cat.institutmontivi.decissorviewmodel25.navegacio.DestinacioOraclePregunta
+import cat.institutmontivi.decissorviewmodel25.navegacio.DestinacioPedraPaperTisoresInici
 import cat.institutmontivi.decissorviewmodel25.navegacio.DestinacioPortada
 import cat.institutmontivi.decissorviewmodel25.navegacio.DestinacioPreferencies
 import cat.institutmontivi.decissorviewmodel25.navegacio.DestinacioQuantA
@@ -96,7 +98,7 @@ fun CalaixDeNavegacio(
                     modifier = Modifier.fillMaxWidth().aspectRatio(3F),
                     tint = MaterialTheme.colorScheme.onSecondaryContainer)
                 Spacer (Modifier.height(48.dp))
-                Divider(
+                HorizontalDivider(
                     modifier = Modifier.height(15.dp),
                     color = MaterialTheme.colorScheme.onSecondaryContainer
                 )
@@ -159,9 +161,10 @@ private fun esPotObrirElDrawer(destinacioActual: NavDestination?) = listOf(
     DestinacioInstruccions::class,
     DestinacioPreferencies::class,
     DestinacioQuantA::class,
-    DestinacioCaraOCreu::class,
-    DestinacioTriaNumero::class,
-    DestinacioOraclePregunta::class
+    DestinacioPedraPaperTisoresInici::class,
+//    DestinacioCaraOCreu::class,
+//    DestinacioTriaNumero::class,
+//    DestinacioOraclePregunta::class
 ).any { destinacioActual?.hasRoute(it) ?: true }
 //endregion
 

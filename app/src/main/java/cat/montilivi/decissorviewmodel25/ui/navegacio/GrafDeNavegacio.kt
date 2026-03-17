@@ -9,7 +9,6 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import androidx.navigation.navigation
 import androidx.navigation.toRoute
 import cat.institutmontivi.decissorviewmodel25.ui.pantalles.PantallaCaraOCreu
 import cat.institutmontivi.decissorviewmodel25.ui.pantalles.PantallaInstruccions
@@ -19,13 +18,15 @@ import cat.institutmontivi.decissorviewmodel25.ui.pantalles.PantallaPortada
 import cat.institutmontivi.decissorviewmodel25.ui.pantalles.PantallaPreferencies
 import cat.institutmontivi.decissorviewmodel25.ui.pantalles.PantallaQuantA
 import cat.institutmontivi.decissorviewmodel25.ui.pantalles.PantallaTriaUnNumero
-import cat.institutmontivi.decissorviewmodel25.ui.pantalles.PantallaPortada
+import cat.montilivi.decissorviewmodel25.ui.pantalles.pedrapapertisores.PantallaFinal
+import cat.montilivi.decissorviewmodel25.ui.pantalles.pedrapapertisores.PantallaInicial
+import cat.montilivi.decissorviewmodel25.ui.pantalles.pedrapapertisores.PantallaRonda
 
 
 @Composable
 fun GrafDeNavegacio (controladorDeNavegacio: NavHostController = rememberNavController(), paddingValues: PaddingValues = PaddingValues(0.dp))
 {
-    NavHost(navController = controladorDeNavegacio, startDestination =DestinacioPortada, modifier = Modifier.padding(paddingValues))
+    NavHost(navController = controladorDeNavegacio, startDestination = DestinacioPortada, modifier = Modifier.padding(paddingValues))
     {
         composable<DestinacioPortada> {
             PantallaPortada()
@@ -43,27 +44,49 @@ fun GrafDeNavegacio (controladorDeNavegacio: NavHostController = rememberNavCont
             PantallaQuantA()
         }
 
-        composable<DestinacioCaraOCreu> {
-            PantallaCaraOCreu()
-        }
+//        composable<DestinacioCaraOCreu> {
+//            PantallaCaraOCreu()
+//        }
+//
+//        composable<DestinacioTriaNumero> {
+//            PantallaTriaUnNumero()
+//        }
+//
+//        composable<DestinacioOraclePregunta> {
+//            PantallaOraclePregunta(
+//                onClick = {pregunta:String -> controladorDeNavegacio.navigate(DestinacioOracleResposta(pregunta)) }
+//            )
+//        }
+//
+//        composable<DestinacioOracleResposta> {
+//            val argument = it.toRoute<DestinacioOracleResposta>()
+//            PantallaOracleResposta(
+//                pregunta = argument.pregunta,
+//              )
+//        }
 
-        composable<DestinacioTriaNumero> {
-            PantallaTriaUnNumero()
-        }
-
-        composable<DestinacioOraclePregunta> {
-            PantallaOraclePregunta(
-                onClick = {pregunta:String -> controladorDeNavegacio.navigate(DestinacioOracleResposta(pregunta)) }
+        composable<DestinacioPedraPaperTisoresInici> {
+            PantallaInicial(
+                onRonda = {
+                    controladorDeNavegacio.navigate(DestinacioPedraPaperTisoresRonda)
+                }
             )
         }
 
-        composable<DestinacioOracleResposta> {
-            val argument = it.toRoute<DestinacioOracleResposta>()
-            PantallaOracleResposta(
-                pregunta = argument.pregunta,
-              )
+        composable<DestinacioPedraPaperTisoresRonda> {
+            PantallaRonda(
+                onFinal = {
+                    controladorDeNavegacio.navigate(DestinacioPedraPaperTisoresFinal)
+                }
+            )
+        }
+
+        composable<DestinacioPedraPaperTisoresFinal> {
+            PantallaFinal(
+                onInici = {
+                    controladorDeNavegacio.navigate(DestinacioPedraPaperTisoresInici)
+                }
+            )
         }
     }
-
 }
-
